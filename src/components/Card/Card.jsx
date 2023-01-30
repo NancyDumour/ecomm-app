@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import "./Card.scss";
 const Card = ({ item }) => {
   const photos = process.env.REACT_APP_UPLOAD_URL;
