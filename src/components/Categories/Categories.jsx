@@ -60,7 +60,6 @@ const Categories = () => {
           </div>
           <div className="col">
             <div className="row">
-              {" "}
               <img
                 src="https://images.pexels.com/photos/2703202/pexels-photo-2703202.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt=""
