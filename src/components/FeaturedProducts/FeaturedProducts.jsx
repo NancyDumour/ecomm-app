@@ -1,31 +1,12 @@
 import React from "react";
 import Card from "../Card/Card";
 import "./FeaturedProducts.scss";
+import useFetch from "../../hooks/useFetch";
 
 const FeaturedProducts = ({ type }) => {
-  const data = [
-    {
-      id: 1,
-      img: "https://images.pexels.com/photos/601316/pexels-photo-601316.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      title: "Skirt",
-      oldPrice: 19,
-      price: 12,
-    },
-    {
-      id: 2,
-      img: "https://images.pexels.com/photos/984619/pexels-photo-984619.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      title: "Hat",
-      oldPrice: 10,
-      price: 8,
-    },
-    {
-      id: 3,
-      img: "https://images.pexels.com/photos/1755428/pexels-photo-1755428.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      title: "Dress",
-      oldPrice: 10,
-      price: 8,
-    },
-  ];
+  const { data, loading, error } = useFetch(
+    `/products?populate=*&[filters][type][$eq]=${type}`,
+  );
 
   return (
     <div className="featuredProducts">
@@ -44,9 +25,13 @@ const FeaturedProducts = ({ type }) => {
         </p>
       </div>
       <div className="bottom">
-        {data.map((item) => {
-          return <Card item={item} key={item.id} />;
-        })}
+        {error
+          ? "Somethingwent wrong"
+          : loading
+          ? "loading"
+          : data?.map((item) => {
+              return <Card item={item} key={item.id} />;
+            })}
       </div>
     </div>
   );
